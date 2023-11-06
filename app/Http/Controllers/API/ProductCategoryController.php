@@ -16,29 +16,28 @@ class ProductCategoryController extends Controller
         $name = $request->input('name');
         $show_product = $request->input('show_product');
 
-        if($id)
-        {
+        if ($id) {
             $category = ProductCategory::with(['products'])->find($id);
 
-            if($category)
+            if ($category)
                 return ResponseFormatter::success(
                     $category,
-                    'Data produk berhasil diambil'
+                    'Data kategori berhasil diambil'
                 );
             else
                 return ResponseFormatter::error(
                     null,
-                    'Data kategori produk tidak ada',
+                    'Data kategori tidak ada',
                     404
                 );
         }
 
         $category = ProductCategory::query();
 
-        if($name)
+        if ($name)
             $category->where('name', 'like', '%' . $name . '%');
 
-        if($show_product)
+        if ($show_product)
             $category->with('products');
 
         return ResponseFormatter::success(

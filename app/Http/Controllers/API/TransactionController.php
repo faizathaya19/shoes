@@ -17,11 +17,10 @@ class TransactionController extends Controller
         $limit = $request->input('limit', 6);
         $status = $request->input('status');
 
-        if($id)
-        {
+        if ($id) {
             $transaction = Transaction::with(['items.product'])->find($id);
 
-            if($transaction)
+            if ($transaction)
                 return ResponseFormatter::success(
                     $transaction,
                     'Data transaksi berhasil diambil'
@@ -36,7 +35,7 @@ class TransactionController extends Controller
 
         $transaction = Transaction::with(['items.product'])->where('users_id', Auth::user()->id);
 
-        if($status)
+        if ($status)
             $transaction->where('status', $status);
 
         return ResponseFormatter::success(
@@ -66,7 +65,7 @@ class TransactionController extends Controller
             'shipping_price' => $request->shipping_price,
             'status' => $request->status
         ]);
-        
+
         foreach ($request->items as $product) {
             TransactionItem::create([
                 'users_id' => Auth::user()->id,
