@@ -4,10 +4,8 @@ echo "Running composer"
 composer global require hirak/prestissimo:^0.3.10
 
 # Ensure the required versions are installed globally
-composer require composer-plugin-api:^1.0.0 --global
-
-# Assuming you have PHP version 8.2.7 globally installed
-composer require php:^8.2.7 --global
+composer require composer-plugin-api:^1.0.0
+composer require php:^8.2.7
 
 composer install --no-dev --working-dir=/var/www/html
 
