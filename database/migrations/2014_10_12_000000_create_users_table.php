@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create
+            DB::statement("alter table child_tbl inherit parent_tbl");
+        ('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
